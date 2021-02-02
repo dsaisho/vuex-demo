@@ -1,5 +1,7 @@
 # vuex_demo
 
+## live example:
+[https://vue-vuex-demo.herokuapp.com/](https://vue-vuex-demo.herokuapp.com/)
 ## Project setup
 ```
 npm install
