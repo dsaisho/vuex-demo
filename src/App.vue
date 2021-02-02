@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <a @click="homeLinkClicked">Home</a> |
+      <a @click="aboutLinkClicked">About</a>
     </div>
     <router-view />
   </div>
@@ -30,3 +30,20 @@
   }
 }
 </style>
+<script>
+export default {
+  name:"App",
+  methods: {
+    homeLinkClicked() {
+      this.$router.push({
+        path: "/",
+      });
+    },
+    aboutLinkClicked() {
+      this.$router.push({
+        path: "/about",
+      });
+    },
+  },
+};
+</script>
