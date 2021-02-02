@@ -5,8 +5,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    selectedDrink:"margarita",
-    drinkData:null
+    selectedDrink: "margarita",
+    drinkData: null,
   },
   mutations: {
     /*
@@ -16,10 +16,10 @@ export default new Vuex.Store({
       state.selectedDrink = _selectedDrink;
       console.log("Setting Selected Drink in Store::", _selectedDrink);
     },
-    set_drinkData(state, _drinkData){
+    set_drinkData(state, _drinkData) {
       state.drinkData = _drinkData;
-      console.log("Setting Drink Data in Store", _drinkData)
-    }
+      console.log("Setting Drink Data in Store", _drinkData);
+    },
   },
   actions: {
     /*
@@ -29,20 +29,22 @@ export default new Vuex.Store({
       getDrinksData first requests data, formats the data, then it commits a mutation which will put the data in the store.
 
     */
-    async getDrinkData(context, _selectedDrink){
+    async getDrinkData(context, _selectedDrink) {
       console.log("Requesting Data For This Drink::", _selectedDrink);
-      
-      const fileUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(_selectedDrink)}`;
-      
-      const drinkData  = await axios.get(fileUrl).then(_drinkData => {
+
+      const fileUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(
+        _selectedDrink
+      )}`;
+
+      const drinkData = await axios.get(fileUrl).then((_drinkData) => {
         return _drinkData.data?.drinks || null;
-      })
+      });
 
       context.commit("set_drinkData", drinkData);
       context.commit("set_selectedDrink", _selectedDrink);
-    }
+    },
   },
-  getters:{
+  getters: {
     /*
       getters are used to get values from the store.
 
@@ -59,8 +61,8 @@ export default new Vuex.Store({
                 }
               },
     */
-    drinkData: state=>{
+    drinkData: state => {
       return state.drinkData;
-    }
-  }
+    },
+  },
 });
